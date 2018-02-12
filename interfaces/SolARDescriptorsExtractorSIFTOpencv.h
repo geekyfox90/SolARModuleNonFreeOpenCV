@@ -22,7 +22,7 @@
 // part of SolAR namespace //
 
 #include "ComponentBase.h"
-#include "SolAROpencvAPI.h"
+#include "SolAROpencvNonFreeAPI.h"
 #include <string>
 #include "opencv2/opencv.hpp"
 #include "opencv2/xfeatures2d.hpp"
@@ -33,7 +33,7 @@ using namespace datastructure;
 namespace MODULES {
 namespace OPENCV {
 
-class SOLAROPENCV_EXPORT_API SolARDescriptorsExtractorSIFTOpencv : public org::bcom::xpcf::ComponentBase,
+class SOLAROPENCVNONFREE_EXPORT_API SolARDescriptorsExtractorSIFTOpencv : public org::bcom::xpcf::ComponentBase,
         public api::features::IDescriptorsExtractor {
 public:
     SolARDescriptorsExtractorSIFTOpencv();
