@@ -53,7 +53,7 @@
 
 #include "api/solver/pose/IPoseEstimation.h"
 
-#include "SolAROpenCVNonFreeAPI.h"
+#include "SolAROpencvNonFreeAPI.h"
 
 using namespace std;
 

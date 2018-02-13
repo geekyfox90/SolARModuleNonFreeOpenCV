@@ -37,20 +37,17 @@ DEFINES += "_BCOM_SHARED=__declspec(dllexport)"
 
 INCLUDEPATH += interfaces/
 
-HEADERS += interfaces/SolAROpencvAPI.h \
-
+HEADERS += interfaces/SolAROpencvNonFreeAPI.h \
 interfaces/SolARDescriptorsExtractorSURF64Opencv.h \
 interfaces/SolARDescriptorsExtractorSURF128Opencv.h \
-interfaces/SolARDescriptorsExtractorSIFTOpencv.h 
+interfaces/SolARDescriptorsExtractorSIFTOpencv.h \
+interfaces/SolARModuleManagerOpencvNonFree.h
 
-interfaces/SolARModuleManagerOpencv.h
-
-SOURCES += src/SolARModuleOpencv.cpp \
-   
+SOURCES += src/SolARModuleOpencvNonFree.cpp \
     src/SolARDescriptorsExtractorSIFTOpencv.cpp \
     src/SolARDescriptorsExtractorSURF64Opencv.cpp \
     src/SolARDescriptorsExtractorSURF128Opencv.cpp \
-    src/SolARModuleManagerOpencv.cpp 
+    src/SolARModuleManagerOpencvNonFree.cpp 
  
 unix {
 }
