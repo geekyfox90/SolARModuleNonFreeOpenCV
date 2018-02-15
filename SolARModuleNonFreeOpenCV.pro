@@ -2,7 +2,7 @@
 QT       -= core gui
 CONFIG -= qt
 
-## global defintions : target lib name, version
+## global definitions : target lib name, version
 TARGET = SolARModuleNonFreeOpenCV
 INSTALLSUBDIR = bcomBuild
 FRAMEWORK = $$TARGET
@@ -41,13 +41,13 @@ HEADERS += interfaces/SolAROpencvNonFreeAPI.h \
 interfaces/SolARDescriptorsExtractorSURF64Opencv.h \
 interfaces/SolARDescriptorsExtractorSURF128Opencv.h \
 interfaces/SolARDescriptorsExtractorSIFTOpencv.h \
-interfaces/SolARModuleManagerOpencvNonFree.h
+interfaces/SolARModuleManagerNonFreeOpencv.h
 
-SOURCES += src/SolARModuleOpencvNonFree.cpp \
+SOURCES += src/SolARModuleNonFreeOpencv.cpp \
     src/SolARDescriptorsExtractorSIFTOpencv.cpp \
     src/SolARDescriptorsExtractorSURF64Opencv.cpp \
     src/SolARDescriptorsExtractorSURF128Opencv.cpp \
-    src/SolARModuleManagerOpencvNonFree.cpp 
+    src/SolARModuleManagerNonFreeOpencv.cpp 
  
 unix {
 }
