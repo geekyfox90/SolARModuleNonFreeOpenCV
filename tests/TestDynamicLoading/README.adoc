@@ -1,0 +1,1 @@
+./TestDynamicLoading ../config.ini
