@@ -50,15 +50,12 @@ int main(int argc, char *argv[])
 //    SolARLog::init();
     LOG_ADD_LOG_TO_CONSOLE();
 
-
     if(argc<2) {
         printHelp();
          return -1;
     }
-	
 
     LOG_INFO("program is running");
-
 
     /* instantiate module manager*/
     /* this is needed in dynamic mode */
