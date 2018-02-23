@@ -60,13 +60,15 @@ using namespace std;
 namespace xpcf  = org::bcom::xpcf;
 namespace SolAR {
 namespace MODULES {
-namespace OPENCV {
+namespace NONFREEOPENCV {
 namespace UUID{
 
 // declaration of components UUIDs
 const string DESCRIPTORS_EXTRACTOR_SIFT="3787eaa6-d0a0-11e7-8fab-cec278b6b50a";
 const string DESCRIPTORS_EXTRACTOR_SURF128="fe14a310-d0a2-11e7-8fab-cec278b6b50a";
 const string DESCRIPTORS_EXTRACTOR_SURF64="1a437804-d0a3-11e7-8fab-cec278b6b50a";
+const string KEYPOINT_DETECTOR_NONFREEOPENCV="d1f9317c-9519-4671-8ff5-4629773544f2";
+
 
 }  // End namespace UUID
 

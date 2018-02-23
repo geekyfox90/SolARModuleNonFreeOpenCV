@@ -31,7 +31,7 @@ namespace SolAR {
 using namespace datastructure;
 
 namespace MODULES {
-namespace OPENCV {
+namespace NONFREEOPENCV {
 
 class SOLAROPENCVNONFREE_EXPORT_API SolARDescriptorsExtractorSIFTOpencv : public org::bcom::xpcf::ComponentBase,
         public api::features::IDescriptorsExtractor {

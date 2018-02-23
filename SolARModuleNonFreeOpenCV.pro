@@ -41,13 +41,15 @@ HEADERS += interfaces/SolAROpencvNonFreeAPI.h \
 interfaces/SolARDescriptorsExtractorSURF64Opencv.h \
 interfaces/SolARDescriptorsExtractorSURF128Opencv.h \
 interfaces/SolARDescriptorsExtractorSIFTOpencv.h \
-interfaces/SolARModuleManagerNonFreeOpencv.h
+interfaces/SolARModuleManagerNonFreeOpencv.h \
+interfaces/SolARKeypointDetectorNonFreeOpencv.h
 
 SOURCES += src/SolARModuleNonFreeOpencv.cpp \
     src/SolARDescriptorsExtractorSIFTOpencv.cpp \
     src/SolARDescriptorsExtractorSURF64Opencv.cpp \
     src/SolARDescriptorsExtractorSURF128Opencv.cpp \
-    src/SolARModuleManagerNonFreeOpencv.cpp 
+    src/SolARModuleManagerNonFreeOpencv.cpp \  
+    src/SolARKeypointDetectorNonFreeOpencv.cpp
  
 unix {
 }

@@ -23,18 +23,19 @@
 #include <array>
 
 //#include <boost/thread/thread.hpp>
-XPCF_DEFINE_FACTORY_CREATE_INSTANCE(SolAR::MODULES::OPENCV::SolARDescriptorsExtractorSIFTOpencv);
+XPCF_DEFINE_FACTORY_CREATE_INSTANCE(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSIFTOpencv);
 
 namespace xpcf = org::bcom::xpcf;
 
 using namespace cv;
 using namespace cv::xfeatures2d;
+using namespace SolAR::MODULES::OPENCV;
 
 
 namespace SolAR {
 using namespace datastructure;
 namespace MODULES {
-namespace OPENCV {
+namespace NONFREEOPENCV {
 
 SolARDescriptorsExtractorSIFTOpencv::SolARDescriptorsExtractorSIFTOpencv()
 {

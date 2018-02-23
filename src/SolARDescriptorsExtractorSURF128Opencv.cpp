@@ -24,17 +24,18 @@
 #include <thread>
 #include <array>
 */
-XPCF_DEFINE_FACTORY_CREATE_INSTANCE(SolAR::MODULES::OPENCV::SolARDescriptorsExtractorSURF128Opencv);
+XPCF_DEFINE_FACTORY_CREATE_INSTANCE(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSURF128Opencv);
 
 namespace xpcf = org::bcom::xpcf;
 
 using namespace cv;
 using namespace cv::xfeatures2d;
+using namespace SolAR::MODULES::OPENCV;
 
 namespace SolAR {
 using namespace datastructure;
 namespace MODULES {
-namespace OPENCV {
+namespace NONFREEOPENCV {
 
 SolARDescriptorsExtractorSURF128Opencv::SolARDescriptorsExtractorSURF128Opencv()
 {

@@ -29,7 +29,7 @@ namespace xpcf  = org::bcom::xpcf;
 
 namespace SolAR {
 namespace MODULES {
-namespace OPENCV {
+namespace NONFREEOPENCV {
 
 SolARModuleManagerOpencvNonFree::SolARModuleManagerOpencvNonFree()
 {
