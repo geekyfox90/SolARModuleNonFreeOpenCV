@@ -22,7 +22,7 @@
 // part of SolAR namespace //
 
 #include "ComponentBase.h"
-#include "SolAROpencvAPI.h"
+#include "SolAROpencvNonFreeAPI.h"
 #include <string>
 #include "opencv2/opencv.hpp"
 
@@ -33,7 +33,7 @@ using namespace api::features;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
-class SOLAROPENCV_EXPORT_API SolARKeypointDetectorNonFreeOpencv : public org::bcom::xpcf::ComponentBase,
+class SOLAROPENCVNONFREE_EXPORT_API SolARKeypointDetectorNonFreeOpencv : public org::bcom::xpcf::ComponentBase,
         public IKeypointDetector {
 public:
     SolARKeypointDetectorNonFreeOpencv();
