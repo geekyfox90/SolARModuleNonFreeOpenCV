@@ -13,5 +13,9 @@
                 <interface uuid="125f2007-1bf9-421d-9367-fbdc1210d006" description="IComponentIntrospect"/>
                 <interface uuid="c0e49ff1-0696-4fe6-85a8-9b2c1e155d2e" description="IDescriptorsExtractor"/>
         </component>
+        <component uuid="d1f9317c-9519-4671-8ff5-4629773544f2" description="SolARKeypointDetectorNonFreeOpencv">
+                <interface uuid="125f2007-1bf9-421d-9367-fbdc1210d006" description="IComponentIntrospect"/>
+                <interface uuid="0eadc8b7-1265-434c-a4c6-6da8a028e06e" description="IKeypointDetector"/>
+        </component>
     </container>
 </xpcf-registry>

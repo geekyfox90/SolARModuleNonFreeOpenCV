@@ -57,5 +57,6 @@ XPCF_BEGIN_COMPONENTS_DECLARATION
 XPCF_ADD_COMPONENT(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSIFTOpencv::UUID,"Component SolARDescriptorsExtractorSIFTOpencv")
 XPCF_ADD_COMPONENT(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSURF128Opencv::UUID,"Component SolARDescriptorsExtractorSURF128Opencv")
 XPCF_ADD_COMPONENT(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSURF64Opencv::UUID,"Component SolARDescriptorsExtractorSURF64Opencv")
+XPCF_ADD_COMPONENT(SolAR::MODULES::NONFREEOPENCV::SolARKeypointDetectorNonFreeOpencv::UUID,"Component SolARKeypointDetectorNonFreeOpencv")
 
 XPCF_END_COMPONENTS_DECLARATION
