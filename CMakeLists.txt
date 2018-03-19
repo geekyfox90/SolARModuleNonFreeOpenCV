@@ -20,7 +20,7 @@ setup()
 # process packagedependencies.txt
 processPackagedependencies()
 # define targets (type library)
-defineTargets("library")
+defineTargets("library" "")
 
 
 
