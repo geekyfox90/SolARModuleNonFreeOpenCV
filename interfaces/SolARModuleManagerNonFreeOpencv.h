@@ -19,40 +19,9 @@
 
 #include "IComponentManager.h"
 
-#include "api/display/I2DOverlay.h"
-#include "api/display/I3DOverlay.h"
-#include "api/display/IImageViewer.h"
-#include "api/display/ISideBySideOverlay.h"
 
-#include "api/features/IContoursExtractor.h"
-#include "api/features/IContoursFilter.h"
-#include "api/features/IDescriptorMatcher.h"
 #include "api/features/IDescriptorsExtractor.h"
-#include "api/features/IDescriptorsExtractorSBPattern.h"
 #include "api/features/IKeypointDetector.h"
-#include "api/features/ISBPatternReIndexer.h"
-#include "api/features/IKeypointsReIndexer.h"
-
-#include "api/geom/I2DTransform.h"
-#include "api/geom/I3DTransform.h"
-#include "api/geom/IImage2WorldMapper.h"
-
-#include "api/input/devices/ICamera.h"
-#include "api/input/devices/ICameraCalibration.h"
-#include "api/input/files/IMarker2DNaturalImage.h"
-#include "api/input/files/IMarker2DSquaredBinary.h"
-
-#include "api/solver/pose/IHomographyEstimation.h"
-#include "api/solver/pose/IHomographyValidation.h"
-
-#include "api/image/IImageConvertor.h"
-#include "api/image/IImageFilter.h"
-#include "api/image/IImageLoader.h"
-#include "api/image/IPerspectiveController.h"
-
-
-#include "api/solver/pose/IPoseEstimation.h"
-
 #include "SolAROpencvNonFreeAPI.h"
 
 using namespace std;
@@ -113,14 +82,22 @@ int SolARModuleManagerOpencvNonFree::createComponent(string uuid, SRef<T> &compR
     boost::uuids::string_generator gen;
     
     int res;
-     if ( uuid == UUID::DESCRIPTORS_EXTRACTOR_SIFT || uuid == UUID::DESCRIPTORS_EXTRACTOR_SURF128 || uuid == UUID::DESCRIPTORS_EXTRACTOR_SURF64) // keypoint descriptors extractors component
+    if ( uuid == UUID::KEYPOINT_DETECTOR_NONFREEOPENCV ) // keypoint detector component
     {
+
+       res=m_xpcfComponentManager->createComponent(gen(uuid), gen(api::features::IKeypointDetector::UUID), compRef);
+       if (res == -1)
+            LOG_ERROR("Keypoint detector non free opencv component creation has failed");
+       return res;
+   }
+   else if ( uuid == UUID::DESCRIPTORS_EXTRACTOR_SIFT || uuid == UUID::DESCRIPTORS_EXTRACTOR_SURF128 || uuid == UUID::DESCRIPTORS_EXTRACTOR_SURF64) // keypoint descriptors extractors component
+   {
 
         res=m_xpcfComponentManager->createComponent(gen(uuid), gen(api::features::IDescriptorsExtractor::UUID), compRef);
         if (res == -1)
-             LOG_ERROR("ORB descriptors extractor component creation has failed");
+             LOG_ERROR("Descriptors extractor non free opencv component creation has failed");
         return res;
-    }
+   }
 
     return -1;
 }
