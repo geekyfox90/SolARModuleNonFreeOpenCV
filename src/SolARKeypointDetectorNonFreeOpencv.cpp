@@ -38,10 +38,9 @@ using namespace datastructure;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
-SolARKeypointDetectorNonFreeOpencv::SolARKeypointDetectorNonFreeOpencv()
+SolARKeypointDetectorNonFreeOpencv::SolARKeypointDetectorNonFreeOpencv():ComponentBase(xpcf::toUUID<SolARKeypointDetectorNonFreeOpencv>())
 {
-    setUUID(SolARKeypointDetectorNonFreeOpencv::UUID);
-    addInterface<api::features::IKeypointDetector>(this,api::features::IKeypointDetector::UUID, "interface api::features::IKeypointDetector");
+    addInterface<api::features::IKeypointDetector>(this);
 
     LOG_DEBUG("SolARKeypointDetectorNonFreeOpencv constructor");
     m_type=KeypointDetectorType::AKAZE;

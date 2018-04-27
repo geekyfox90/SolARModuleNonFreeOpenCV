@@ -16,8 +16,16 @@
 
 #include <iostream>
 #include <string>
-#include "SolARModuleManagerOpencv.h"
-#include "SolARModuleManagerNonFreeOpencv.h"
+#include "IComponentManager.h"
+
+#include "SolARModuleOpencv_traits.h"
+#include "SolARModuleNonFreeOpencv_traits.h"
+
+#include "api/image/IImageLoader.h"
+#include "api/display/IImageViewer.h"
+#include "api/display/I2DOverlay.h"
+#include "api/features/IKeypointDetector.h"
+#include "api/features/IDescriptorsExtractor.h"
 
 using namespace SolAR;
 using namespace SolAR::datastructure;
@@ -27,27 +35,33 @@ namespace xpcf  = org::bcom::xpcf;
 
 int run(int argc,char** argv)
 {
-    // instantiate module manager
-    MODULES::OPENCV::SolARModuleManagerOpencv opencvModule(argv[2]);
-    if (!opencvModule.isLoaded()) // xpcf library load has failed
+
+    // load libraries
+    SRef<xpcf::IComponentManager> xpcfComponentManagerOpenCV = xpcf::getComponentManagerInstance();
+    xpcfComponentManagerOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleOpenCV_registry.xml");
+    // instantiate module managers
+    if (!xpcfComponentManagerOpenCV->isLoaded()) // xpcf library load has failed
     {
-        LOG_ERROR("XPCF library load has failed")
+        LOG_ERROR("SolARModuleOpenCV library load has failed")
         return -1;
     }
 
-    MODULES::NONFREEOPENCV::SolARModuleManagerOpencvNonFree opencvNonFreeModule(argv[2]);
-    if (!opencvNonFreeModule.isLoaded()) // xpcf library load has failed
+    SRef<xpcf::IComponentManager> xpcfComponentManagerNonFreeOpenCV = xpcf::getComponentManagerInstance();
+    xpcfComponentManagerNonFreeOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleNonFreeOpenCV_registry.xml");
+    // instantiate module managers
+    if (!xpcfComponentManagerNonFreeOpenCV->isLoaded()) // xpcf library load has failed
     {
-        LOG_ERROR("XPCF library load has failed")
+        LOG_ERROR("SolARModuleNonFreeOpenCV library load has failed")
         return -1;
-    }    
+    }
 
  // declarations and creation of components
-    SRef<image::IImageLoader> imageLoader = opencvModule.createComponent<image::IImageLoader>(MODULES::OPENCV::UUID::IMAGE_LOADER);
-    SRef<display::IImageViewer> viewer = opencvModule.createComponent<display::IImageViewer>(MODULES::OPENCV::UUID::IMAGE_VIEWER);
-    SRef<display::I2DOverlay> overlay = opencvModule.createComponent<display::I2DOverlay>(MODULES::OPENCV::UUID::OVERLAY2D);
-    SRef<features::IKeypointDetector> keypointsDetector = opencvNonFreeModule.createComponent<features::IKeypointDetector>(MODULES::NONFREEOPENCV::UUID::KEYPOINT_DETECTOR_NONFREEOPENCV);
-    SRef<features::IDescriptorsExtractor> extractorSIFT = opencvNonFreeModule.createComponent<features::IDescriptorsExtractor>(MODULES::NONFREEOPENCV::UUID::DESCRIPTORS_EXTRACTOR_SIFT);
+    SRef<image::IImageLoader> imageLoader = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageLoaderOpencv>()->bindTo<image::IImageLoader>();
+    SRef<display::IImageViewer> viewer = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageViewerOpencv>()->bindTo<display::IImageViewer>();
+    SRef<display::I2DOverlay> overlay  = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolAR2DOverlayOpencv>()->bindTo<display::I2DOverlay>();
+
+    SRef<features::IKeypointDetector> keypointsDetector = xpcfComponentManagerNonFreeOpenCV->create<SolAR::MODULES::NONFREEOPENCV::SolARKeypointDetectorNonFreeOpencv>()->bindTo<features::IKeypointDetector>();
+    SRef<features::IDescriptorsExtractor> extractorSIFT = xpcfComponentManagerNonFreeOpenCV->create<SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSIFTOpencv>()->bindTo<features::IDescriptorsExtractor>();
 
     
 
@@ -94,13 +108,13 @@ int run(int argc,char** argv)
 
 int printHelp(){
         printf(" usage :\n");
-        printf(" exe ImageFilePath configFilePath\n");
+        printf(" exe ImageFilePath\n");
         printf(" Escape key to exit");
         return 1;
 }
 
 int main(int argc, char **argv){
-    if(argc == 3){
+    if(argc == 2){
         run(argc,argv);
          return 1;
     }

@@ -52,11 +52,13 @@ int run(int argc, char **argv)
     char escape_key = 27;
 
     // component creation
-    xpcf::ComponentFactory::createComponent<SolARImageLoaderOpencv>(gen(image::IImageLoader::UUID ), imageLoader);
-    xpcf::ComponentFactory::createComponent<SolARKeypointDetectorNonFreeOpencv>(gen(features::IKeypointDetector::UUID ), keypointsDetector);
-    xpcf::ComponentFactory::createComponent<SolARDescriptorsExtractorSIFTOpencv>(gen(features::IDescriptorsExtractor::UUID ), extractorSIFT);
-    xpcf::ComponentFactory::createComponent<SolAR2DOverlayOpencv>(gen(display::I2DOverlay::UUID ), overlay);
-    xpcf::ComponentFactory::createComponent<SolARImageViewerOpencv>(gen(display::IImageViewer::UUID ), viewer);
+
+    xpcf::ComponentFactory::createComponent<SolARImageLoaderOpencv>(xpcf::toUUID<image::IImageLoader>(), imageLoader);
+    xpcf::ComponentFactory::createComponent<SolARKeypointDetectorNonFreeOpencv>(xpcf::toUUID<features::IKeypointDetector>(), keypointsDetector);
+    xpcf::ComponentFactory::createComponent<SolARDescriptorsExtractorSIFTOpencv>(xpcf::toUUID<features::IDescriptorsExtractor>(), extractorSIFT);
+    xpcf::ComponentFactory::createComponent<SolAR2DOverlayOpencv>(xpcf::toUUID<display::I2DOverlay>(), overlay);
+    xpcf::ComponentFactory::createComponent<SolARImageViewerOpencv>(xpcf::toUUID<display::IImageViewer>(), viewer);
+
 
     // components initialisation
         // nothing to do

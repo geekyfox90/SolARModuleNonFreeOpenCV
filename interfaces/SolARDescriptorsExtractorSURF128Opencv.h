@@ -42,8 +42,6 @@ public:
 
     void extract (const SRef<Image> image, const std::vector<SRef<Keypoint>> &keypoints, SRef<DescriptorBuffer>& descriptors) override;
 
-    XPCF_DECLARE_UUID("fe14a310-d0a2-11e7-8fab-cec278b6b50a");
-
 private:
     cv::Ptr<cv::Feature2D> m_extractor;
 };
