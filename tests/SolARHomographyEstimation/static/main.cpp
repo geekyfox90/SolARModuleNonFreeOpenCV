@@ -50,7 +50,7 @@ int run(int argc, char *argv[])
     SRef<features::IKeypointDetector> kpDetector;
     SRef<features::IDescriptorsExtractor> descriptorExtractor;
     SRef<features::IDescriptorMatcher>  matcher;
-    SRef<solver::pose::IHomographyEstimation> homographyEstimation;
+    SRef<solver::pose::I2DTransformFinder> homographyEstimation; 
     SRef<display::IImageViewer> imageViewer;
     SRef<display::ISideBySideOverlay> overlaySBSComponent;
     SRef<display::I2DOverlay> overlay2DComponent;
@@ -62,7 +62,8 @@ int run(int argc, char *argv[])
     xpcf::ComponentFactory::createComponent<SolARKeypointDetectorNonFreeOpencv>(xpcf::toUUID<features::IKeypointDetector>(), kpDetector);
     xpcf::ComponentFactory::createComponent<SolARDescriptorsExtractorSIFTOpencv>(xpcf::toUUID<features::IDescriptorsExtractor>(), descriptorExtractor);
     xpcf::ComponentFactory::createComponent<SolARDescriptorMatcherKNNOpencv>(xpcf::toUUID<features::IDescriptorMatcher>(), matcher);
-    xpcf::ComponentFactory::createComponent<SolARHomographyEstimationOpencv>(xpcf::toUUID<solver::pose::IHomographyEstimation>(), homographyEstimation);
+    
+    xpcf::ComponentFactory::createComponent<SolARHomographyEstimationOpencv>(gen(solver::pose::I2DTransformFinder::UUID), homographyEstimation); 
     xpcf::ComponentFactory::createComponent<SolARImageViewerOpencv>(xpcf::toUUID<display::IImageViewer>(), imageViewer);     
     xpcf::ComponentFactory::createComponent<SolARSideBySideOverlayOpencv>(xpcf::toUUID<display::ISideBySideOverlay>(), overlaySBSComponent);
     xpcf::ComponentFactory::createComponent<SolAR2DOverlayOpencv>(xpcf::toUUID<display::I2DOverlay>(), overlay2DComponent);
@@ -122,7 +123,7 @@ int run(int argc, char *argv[])
     LOG_INFO("FIND HOMOGRAPHY ");
     Transform2Df Hm;
 
-    int res = homographyEstimation->findHomography(matchedRef1Keypoints, matchedRef2Keypoints, Hm);
+    int res = homographyEstimation->find(matchedRef1Keypoints, matchedRef2Keypoints, Hm); 
     if (res == 0)
     {
         // vector of 4 corners in the marker
