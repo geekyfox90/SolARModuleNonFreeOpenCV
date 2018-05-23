@@ -64,9 +64,9 @@ int run(int argc,char** argv)
  // declarations and creation of components
     SRef<image::IImageLoader> imageLoader1 = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageLoaderOpencv>()->bindTo<image::IImageLoader>();
     SRef<image::IImageLoader> imageLoader2 = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageLoaderOpencv>()->bindTo<image::IImageLoader>();
-    SRef<features::IDescriptorMatcher> matcher = xpcfComponentManager->create<SolAR::MODULES::OPENCV::SolARDescriptorMatcherKNNOpencv>()->bindTo<features::IDescriptorMatcher>();
-    SRef<display::IImageViewer> viewer = xpcfComponentManager->create<SolAR::MODULES::OPENCV::SolARImageViewerOpencv>()->bindTo<display::IImageViewer>();
-    SRef<display::ISideBySideOverlay> overlay = xpcfComponentManager->create<SolAR::MODULES::OPENCV::SolARSideBySideOverlayOpencv>()->bindTo<display::ISideBySideOverlay>();
+    SRef<features::IDescriptorMatcher> matcher = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARDescriptorMatcherKNNOpencv>()->bindTo<features::IDescriptorMatcher>();
+    SRef<display::IImageViewer> viewer = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageViewerOpencv>()->bindTo<display::IImageViewer>();
+    SRef<display::ISideBySideOverlay> overlay = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARSideBySideOverlayOpencv>()->bindTo<display::ISideBySideOverlay>();
 
     SRef<features::IKeypointDetector> keypointsDetector = xpcfComponentManagerNonFreeOpenCV->create<SolAR::MODULES::NONFREEOPENCV::SolARKeypointDetectorNonFreeOpencv>()->bindTo<features::IKeypointDetector>();
     SRef<features::IDescriptorsExtractor> extractorSIFT = xpcfComponentManagerNonFreeOpenCV->create<SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSIFTOpencv>()->bindTo<features::IDescriptorsExtractor>();
