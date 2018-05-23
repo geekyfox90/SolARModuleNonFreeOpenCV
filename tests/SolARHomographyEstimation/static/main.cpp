@@ -63,7 +63,7 @@ int run(int argc, char *argv[])
     xpcf::ComponentFactory::createComponent<SolARDescriptorsExtractorSIFTOpencv>(xpcf::toUUID<features::IDescriptorsExtractor>(), descriptorExtractor);
     xpcf::ComponentFactory::createComponent<SolARDescriptorMatcherKNNOpencv>(xpcf::toUUID<features::IDescriptorMatcher>(), matcher);
     
-    xpcf::ComponentFactory::createComponent<SolARHomographyEstimationOpencv>(gen(solver::pose::I2DTransformFinder::UUID), homographyEstimation); 
+    xpcf::ComponentFactory::createComponent<SolARHomographyEstimationOpencv>(xpcf::toUUID<solver::pose::I2DTransformFinder>(), homographyEstimation); 
     xpcf::ComponentFactory::createComponent<SolARImageViewerOpencv>(xpcf::toUUID<display::IImageViewer>(), imageViewer);     
     xpcf::ComponentFactory::createComponent<SolARSideBySideOverlayOpencv>(xpcf::toUUID<display::ISideBySideOverlay>(), overlaySBSComponent);
     xpcf::ComponentFactory::createComponent<SolAR2DOverlayOpencv>(xpcf::toUUID<display::I2DOverlay>(), overlay2DComponent);
