@@ -28,7 +28,6 @@
 #include "SolARDescriptorMatcherRadiusOpencv.h"
 #include "SolARImageViewerOpencv.h"
 #include "SolARSideBySideOverlayOpencv.h"
-#include "SolARBasicMatchesFilterOpencv.h"
 #include "SolARGeometricMatchesFilterOpencv.h"
 
 #include "opencv2/core.hpp"
