@@ -52,7 +52,7 @@ SolARModuleManagerOpencvNonFree::SolARModuleManagerOpencvNonFree(const char *ini
     // read ini file
     boost::property_tree::ptree pt;
     boost::property_tree::ini_parser::read_ini(iniFile, pt);
-    #ifdef _DEBUG
+    #ifndef NDEBUG
     xpcf_xmlPath=pt.get<std::string>("NonFreeOpenCV.xmlDebugPath");
     xpcf_libPath=pt.get<std::string>("NonFreeOpenCV.libDebugPath");
     #else
