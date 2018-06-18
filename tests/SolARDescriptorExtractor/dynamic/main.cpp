@@ -72,7 +72,7 @@ int run(int argc,char** argv)
     }
 
     SRef<Image>                                        testImage;
-    std::vector< sptrnms::shared_ptr<Keypoint>>        keypoints;
+    std::vector< SRef<Keypoint>>        keypoints;
     SRef<DescriptorBuffer>                             descriptors;
 
     // The escape key to exit the sample

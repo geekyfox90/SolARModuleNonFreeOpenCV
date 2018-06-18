@@ -8,7 +8,6 @@ set (SOURCES
 		src/SolARDescriptorsExtractorSIFTOpencv.cpp
 		src/SolARDescriptorsExtractorSURF64Opencv.cpp
 		src/SolARDescriptorsExtractorSURF128Opencv.cpp
-		src/SolARModuleManagerNonFreeOpencv.cpp  
 		src/SolARKeypointDetectorNonFreeOpencv.cpp
 	)
 ##################################################

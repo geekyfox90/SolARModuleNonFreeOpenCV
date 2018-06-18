@@ -38,14 +38,9 @@ int run(int argc, char **argv)
 
     // declarations
     xpcf::utils::uuids::string_generator gen;
-    SRef<image::IImageLoader>              imageLoader;
-    SRef<features::IKeypointDetector>         keypointsDetector;
-    SRef<features::IDescriptorsExtractor>     extractorSIFT;
-    SRef<display::IImageViewer>              viewer;
-    SRef<display::I2DOverlay>                overlay;
 
     SRef<Image>                                        testImage;
-    std::vector< sptrnms::shared_ptr<Keypoint>>        keypoints;
+    std::vector< SRef<Keypoint>>        keypoints;
     SRef<DescriptorBuffer>                             descriptors;
 
     // The escape key to exit the sample
@@ -53,11 +48,11 @@ int run(int argc, char **argv)
 
     // component creation
 
-    xpcf::ComponentFactory::createComponent<SolARImageLoaderOpencv>(xpcf::toUUID<image::IImageLoader>(), imageLoader);
-    xpcf::ComponentFactory::createComponent<SolARKeypointDetectorNonFreeOpencv>(xpcf::toUUID<features::IKeypointDetector>(), keypointsDetector);
-    xpcf::ComponentFactory::createComponent<SolARDescriptorsExtractorSIFTOpencv>(xpcf::toUUID<features::IDescriptorsExtractor>(), extractorSIFT);
-    xpcf::ComponentFactory::createComponent<SolAR2DOverlayOpencv>(xpcf::toUUID<display::I2DOverlay>(), overlay);
-    xpcf::ComponentFactory::createComponent<SolARImageViewerOpencv>(xpcf::toUUID<display::IImageViewer>(), viewer);
+    auto imageLoader=xpcf::ComponentFactory::createInstance<SolARImageLoaderOpencv>()->bindTo<image::IImageLoader>();
+    auto keypointsDetector=xpcf::ComponentFactory::createInstance<SolARKeypointDetectorNonFreeOpencv>()->bindTo<features::IKeypointDetector>();
+    auto extractorSIFT=xpcf::ComponentFactory::createInstance<SolARDescriptorsExtractorSIFTOpencv>()->bindTo<features::IDescriptorsExtractor>();
+    auto overlay=xpcf::ComponentFactory::createInstance<SolAR2DOverlayOpencv>()->bindTo<display::I2DOverlay>();
+    auto viewer=xpcf::ComponentFactory::createInstance<SolARImageViewerOpencv>()->bindTo<display::IImageViewer>();
 
 
     // components initialisation

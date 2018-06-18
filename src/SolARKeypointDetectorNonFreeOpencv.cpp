@@ -170,7 +170,7 @@ void SolARKeypointDetectorNonFreeOpencv::detect(const SRef<Image> &image, std::v
     kptsFilter.retainBest(kpts,m_select_best_N_features);
 
     for(std::vector<cv::KeyPoint>::iterator itr=kpts.begin();itr!=kpts.end();++itr){
-        sptrnms::shared_ptr<Keypoint> kpa = sptrnms::make_shared<Keypoint>();
+        SRef<Keypoint> kpa = xpcf::utils::make_shared<Keypoint>();
 
         kpa->init((*itr).pt.x*ratioInv,(*itr).pt.y*ratioInv,(*itr).size,(*itr).angle,(*itr).response,(*itr).octave,(*itr).class_id) ;
         keypoints.push_back(kpa);
