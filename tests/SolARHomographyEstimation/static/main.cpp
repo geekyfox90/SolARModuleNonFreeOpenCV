@@ -18,8 +18,11 @@
 #include <string>
 
 // ADD COMPONENTS HEADERS HERE
-#include "SolARImageViewerOpencv.h"
+
+
 #include "SolARImageLoaderOpencv.h"
+#include "SolARImageViewerOpencv.h"
+
 #include "SolARKeypointDetectorNonFreeOpencv.h"
 #include "SolARDescriptorsExtractorSIFTOpencv.h"
 #include "SolARDescriptorMatcherKNNOpencv.h"
@@ -117,6 +120,7 @@ int run(int argc, char *argv[])
     Transform2Df Hm;
 
     int res = homographyEstimation->find(matchedRef1Keypoints, matchedRef2Keypoints, Hm); 
+
     if (res == 0)
     {
         // vector of 4 corners in the marker

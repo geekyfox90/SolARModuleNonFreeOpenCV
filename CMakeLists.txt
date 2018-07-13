@@ -11,7 +11,15 @@ set (SOURCES
 		src/SolARKeypointDetectorNonFreeOpencv.cpp
 	)
 
-install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/xpcf_SolARModuleNonFreeOpenCV_registry.xml" DESTINATION $ENV{BCOMDEVROOT}/.xpcf/SolAR/	)
+#install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/xpcf_SolARModuleNonFreeOpenCV_registry.xml" DESTINATION $ENV{BCOMDEVROOT}/.xpcf/SolAR/	)
+#set (HEADERS
+	#interfaces/SolAROpencvNonFreeAPI.h
+	#interfaces/SolARDescriptorsExtractorSURF64Opencv.h
+	#interfaces/SolARDescriptorsExtractorSURF128Opencv.h
+	#interfaces/SolARDescriptorsExtractorSIFTOpencv.h
+	#interfaces/SolARModuleManagerNonFreeOpencv.h
+	#interfaces/SolARKeypointDetectorNonFreeOpencv.h
+#)
 
 ##################################################
 

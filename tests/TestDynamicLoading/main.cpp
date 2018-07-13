@@ -1,12 +1,12 @@
 #include <iostream>
 
 using namespace std;
-#include "IComponentManager.h"
+#include "xpcf/component/ComponentBase.h"
 
-#include "SolARModuleManagerNonFreeOpencv.h"
-#include "SolARModuleManagerOpencv.h"
-#include "SolARModuleManagerTools.h"
-#include "SolAROpenCVHelper.h"
+//#include "SolARModuleManagerNonFreeOpencv.h"
+//#include "SolARModuleManagerOpencv.h"
+//#include "SolARModuleManagerTools.h"
+//#include "SolAROpenCVHelper.h"
 
 //#include "datastructure/SolARDescriptorMatch.h"
 #include "SharedBuffer.hpp"
@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
 
     /* instantiate module manager*/
     /* this is needed in dynamic mode */
+    /*
     MODULES::OPENCV::SolARModuleManagerOpencv opencvModule(argv[1]);
     if (!opencvModule.isLoaded()) // xpcf library load has failed
     {
@@ -102,9 +103,10 @@ int main(int argc, char *argv[])
 	std::cout<<MODULES::NONFREEOPENCV::UUID::DESCRIPTORS_EXTRACTOR_SIFT<<std::endl;
    	SRef<features::IDescriptorsExtractor> descriptorExtractor = opencvNonFreeModule.createComponent<features::IDescriptorsExtractor>(MODULES::NONFREEOPENCV::UUID::DESCRIPTORS_EXTRACTOR_SIFT);
 
-
+   */
     /* in dynamic mode, we need to check that components are well created*/
     /* this is needed in dynamic mode */
+    /*
     if (!camera || !imageViewer || !marker || !kpDetector || !descriptorExtractor || !matcher || !homographyEstimation || !homographyValidation ||
         !keypointsReindexer || !poseEstimation || !overlay2DComponent || !overlaySBSComponent || !overlay3DComponent || !img_mapper || !transform2D )
     {
@@ -117,5 +119,6 @@ int main(int argc, char *argv[])
 	// 
 	//
 	// end of the common code (simple,compile-time, run-time)
+    */
      return 0;
 }

@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <string>
-#include "IComponentManager.h"
+#include "xpcf/component/ComponentBase.h"
 
 #include "SolARModuleOpencv_traits.h"
 #include "SolARModuleNonFreeOpencv_traits.h"
@@ -38,23 +38,12 @@ int run(int argc,char** argv)
 
     // load libraries
     SRef<xpcf::IComponentManager> xpcfComponentManagerOpenCV = xpcf::getComponentManagerInstance();
-    xpcfComponentManagerOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleOpenCV_registry.xml");
-    // instantiate module managers
-    if (!xpcfComponentManagerOpenCV->isLoaded()) // xpcf library load has failed
-    {
-        LOG_ERROR("SolARModuleOpenCV library load has failed")
-        return -1;
-    }
+     org::bcom::xpcf::XPCFErrorCode returnErrCode = xpcfComponentManagerOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleOpenCV_registry.xml");
 
     SRef<xpcf::IComponentManager> xpcfComponentManagerNonFreeOpenCV = xpcf::getComponentManagerInstance();
-    xpcfComponentManagerNonFreeOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleNonFreeOpenCV_registry.xml");
-    // instantiate module managers
-    if (!xpcfComponentManagerNonFreeOpenCV->isLoaded()) // xpcf library load has failed
-    {
-        LOG_ERROR("SolARModuleNonFreeOpenCV library load has failed")
-        return -1;
-    }
-
+    
+    org::bcom::xpcf::XPCFErrorCode returnErrCode2 = xpcfComponentManagerNonFreeOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleNonFreeOpenCV_registry.xml");
+    
  // declarations and creation of components
     SRef<image::IImageLoader> imageLoader = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageLoaderOpencv>()->bindTo<image::IImageLoader>();
     SRef<display::IImageViewer> viewer = xpcfComponentManagerOpenCV->create<SolAR::MODULES::OPENCV::SolARImageViewerOpencv>()->bindTo<display::IImageViewer>();

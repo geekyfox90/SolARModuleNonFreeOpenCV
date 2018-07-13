@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "IComponentManager.h"
+#include "xpcf/component/ComponentBase.h"
 
 #include "SolARModuleOpencv_traits.h"
 #include "SolARModuleNonFreeOpencv_traits.h"
@@ -43,22 +43,28 @@ int run(int argc,char** argv)
 
     // load libraries
     SRef<xpcf::IComponentManager> xpcfComponentManagerOpenCV = xpcf::getComponentManagerInstance();
-    xpcfComponentManagerOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleOpenCV_registry.xml");
+    org::bcom::xpcf::XPCFErrorCode returnErrCode = xpcfComponentManagerOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleOpenCV_registry.xml");
     // instantiate module managers
+   /*
     if (!xpcfComponentManagerOpenCV->isLoaded()) // xpcf library load has failed
     {
         LOG_ERROR("SolARModuleOpenCV library load has failed")
         return -1;
     }
-
+    */
     SRef<xpcf::IComponentManager> xpcfComponentManagerNonFreeOpenCV = xpcf::getComponentManagerInstance();
-    xpcfComponentManagerNonFreeOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleNonFreeOpenCV_registry.xml");
+   
+    org::bcom::xpcf::XPCFErrorCode returnErrCode2 = xpcfComponentManagerNonFreeOpenCV->load("$BCOMDEVROOT/.xpcf/SolAR/xpcf_SolARModuleNonFreeOpenCV_registry.xml");
+    
     // instantiate module managers
+    
+    /*
     if (!xpcfComponentManagerNonFreeOpenCV->isLoaded()) // xpcf library load has failed
     {
         LOG_ERROR("SolARModuleNonFreeOpenCV library load has failed")
         return -1;
     }
+    */
 
 
  // declarations and creation of components
@@ -76,11 +82,12 @@ int run(int argc,char** argv)
         LOG_ERROR("One or more component creations have failed");
         return -1;
     }
-
+ 
+ 
     SRef<Image>                                        image1;
     SRef<Image>                                        image2;
-    std::vector< sptrnms::shared_ptr<Keypoint>>        keypoints1;
-    std::vector< sptrnms::shared_ptr<Keypoint>>        keypoints2;
+    std::vector< SRef<Keypoint>>        keypoints1;
+    std::vector< SRef<Keypoint>>        keypoints2;
     SRef<DescriptorBuffer>                             descriptors1;
     SRef<DescriptorBuffer>                             descriptors2;
     std::vector<DescriptorMatch>                       matches;
@@ -108,7 +115,7 @@ int run(int argc,char** argv)
        LOG_ERROR("Cannot load image with path {}", argv[2]);
        return -1;
     }
-
+  
     // Detect the keypoints of the first image
     keypointsDetector->detect(image1, keypoints1);
 
@@ -129,7 +136,7 @@ int run(int argc,char** argv)
     matchedKeypoints1.clear();
     matchedKeypoints2.clear();
 
-    for( int i = 0; i < matches.size(); i++ )
+    for(unsigned int i = 0; i < matches.size(); i++ )
     {
         matchedKeypoints1.push_back(xpcf::utils::make_shared<Point2Df>(keypoints1[ matches[i].getIndexInDescriptorA()]->getX(),keypoints1[ matches[i].getIndexInDescriptorA()]->getY()));
         matchedKeypoints2.push_back(xpcf::utils::make_shared<Point2Df>(keypoints2[ matches[i].getIndexInDescriptorB()]->getX(),keypoints2[ matches[i].getIndexInDescriptorB()]->getY()));
@@ -148,7 +155,7 @@ int run(int argc,char** argv)
             LOG_INFO("End of DescriptorMatcherOpenCVStaticTest");
         }
     }
-
+    
     return 0;
 }
 
