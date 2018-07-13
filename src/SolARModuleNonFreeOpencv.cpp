@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-#include "ModuleFactory.h"
+#include "xpcf/module/ModuleFactory.h"
 
 #include "SolARDescriptorsExtractorSIFTOpencv.h"
 #include "SolARDescriptorsExtractorSURF128Opencv.h"

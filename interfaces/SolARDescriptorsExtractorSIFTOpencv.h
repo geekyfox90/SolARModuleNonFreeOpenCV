@@ -17,15 +17,20 @@
 #ifndef SOLARDESCRIPTORSEXTRACTOSIFTROPENCV_H
 #define SOLARDESCRIPTORSEXTRACTOSIFTROPENCV_H
 
-#include "api/features/IDescriptorsExtractor.h"
-// Definition of SolARDescriptorExtractorOpencv Class //
-// part of SolAR namespace //
-
-#include "ComponentBase.h"
-#include "SolAROpencvNonFreeAPI.h"
 #include <string>
+
+//opencv headers
 #include "opencv2/opencv.hpp"
 #include "opencv2/xfeatures2d.hpp"
+
+//solar headers
+#include "api/features/IDescriptorsExtractor.h"
+
+//xpcf headers
+#include "xpcf/component/ComponentBase.h"
+
+#include "SolAROpencvNonFreeAPI.h"
+
 
 namespace SolAR {
 using namespace datastructure;
