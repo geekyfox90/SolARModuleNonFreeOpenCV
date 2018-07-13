@@ -41,7 +41,6 @@ HEADERS += interfaces/SolAROpencvNonFreeAPI.h \
 interfaces/SolARDescriptorsExtractorSURF64Opencv.h \
 interfaces/SolARDescriptorsExtractorSURF128Opencv.h \
 interfaces/SolARDescriptorsExtractorSIFTOpencv.h \
-interfaces/SolARModuleManagerNonFreeOpencv.h \
 interfaces/SolARKeypointDetectorNonFreeOpencv.h \
     interfaces/SolARModuleNonFreeOpencv_traits.h
 

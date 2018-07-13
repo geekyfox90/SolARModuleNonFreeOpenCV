@@ -20,6 +20,7 @@
 #include "api/features/IKeypointDetector.h"
 // Definition of SolARKeypointDetectorOpencv Class //
 // part of SolAR namespace //
+
 #include "xpcf/component/ComponentBase.h"
 #include "SolAROpencvNonFreeAPI.h"
 #include <string>
