@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <string>
-#include "xpcf/component/ComponentBase.h"
+#include "xpcf/xpcf.h"
 
 #include "SolARModuleOpencv_traits.h"
 #include "SolARModuleNonFreeOpencv_traits.h"
@@ -72,21 +72,25 @@ int run(int argc,char** argv)
         // nothing to do
 
  // Start
-    if (imageLoader->loadImage(argv[1], testImage) != FrameworkReturnCode::_SUCCESS)
+    imageLoader->bindTo<xpcf::IConfigurable>()->getProperty("filePath")->setStringValue(argv[1],0);
+    if (imageLoader->getImage(testImage) != FrameworkReturnCode::_SUCCESS)
     {
        LOG_ERROR("Cannot load image with path {}", argv[1]);
        return -1;
     }
-
     keypointsDetector->detect(testImage, keypoints);
     extractorSIFT->extract(testImage, keypoints, descriptors);
 
-    overlay->drawCircles(keypoints, 3, 1, testImage);
+    overlay->bindTo<xpcf::IConfigurable>()->getProperty("thickness")->setUnsignedIntegerValue(3);
+    overlay->bindTo<xpcf::IConfigurable>()->getProperty("radius")->setUnsignedIntegerValue(1);
+    overlay->drawCircles(keypoints, testImage);
 
     bool proceed = true;
+    viewer->bindTo<xpcf::IConfigurable>()->getProperty("title")->setStringValue("show keypoints");
+    viewer->bindTo<xpcf::IConfigurable>()->getProperty("exitKey")->setIntegerValue(27);    
     while (proceed)
     {
-        if (viewer->display("show keypoints", testImage, &escape_key) == FrameworkReturnCode::_STOP)
+        if (viewer->display(testImage) == FrameworkReturnCode::_STOP)
         {
             proceed = false;
             std::cout << "end of DescriptorsExtractorOpencv test" << std::endl;

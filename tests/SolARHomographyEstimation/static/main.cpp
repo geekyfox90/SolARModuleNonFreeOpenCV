@@ -77,18 +77,19 @@ int run(int argc, char *argv[])
 
     // load imges
     LOG_INFO("LOAD FIRST IMAGE ");
-    imageLoader->loadImage(argv[1], image1);
-    if (!image1) {
-        LOG_ERROR("cannot load image : {}", argv[1]);
-        exit(-3);
-    }
-
+    imageLoader->bindTo<xpcf::IConfigurable>()->getProperty("filePath")->setStringValue(argv[1],0);
+    if (imageLoader->getImage(image1) != FrameworkReturnCode::_SUCCESS)
+    {
+       LOG_ERROR("Cannot load image with path {}", argv[1]);
+       return -1;
+    }    
     LOG_INFO("LOAD SECOND IMAGE ");
-    imageLoader->loadImage(argv[2], image2);
-    if (!image2) {
-        LOG_ERROR("cannot load image : {}", argv[2]);
-        exit(-3);
-    }
+    imageLoader->bindTo<xpcf::IConfigurable>()->getProperty("filePath")->setStringValue(argv[2],0);
+    if (imageLoader->getImage(image2) != FrameworkReturnCode::_SUCCESS)
+    {
+       LOG_ERROR("Cannot load image with path {}", argv[1]);
+       return -1;
+    }    
 
     LOG_INFO("DETECT FIRST IMAGE KEYPOINTS ");
     kpDetector->detect(image1, ref1Keypoints);
@@ -143,8 +144,11 @@ int run(int argc, char *argv[])
 
         //draw circles on corners in camera image
         LOG_INFO("DISPLAY HOMOGRAPHY RESULT");
-        overlay2DComponent->drawCircles(transformedCorners, 10, 5, image2);
-        if (imageViewer->display("target's corners", image2) == SolAR::FrameworkReturnCode::_STOP) {
+        overlay2DComponent->bindTo<xpcf::IConfigurable>()->getProperty("thickness")->setUnsignedIntegerValue(10);
+        overlay2DComponent->bindTo<xpcf::IConfigurable>()->getProperty("radius")->setUnsignedIntegerValue(5);        
+        overlay2DComponent->drawCircles(transformedCorners, image2);
+        imageViewer->bindTo<xpcf::IConfigurable>()->getProperty("title")->setStringValue("target's corners");
+        if (imageViewer->display(image2) == SolAR::FrameworkReturnCode::_STOP) {
             LOG_ERROR("Display error with image2");
             exit(-2);
         }

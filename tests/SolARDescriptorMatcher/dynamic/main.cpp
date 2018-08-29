@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "xpcf/component/ComponentBase.h"
+#include "xpcf/xpcf.h"
 
 #include "SolARModuleOpencv_traits.h"
 #include "SolARModuleNonFreeOpencv_traits.h"
@@ -103,18 +103,20 @@ int run(int argc,char** argv)
 
  // Start
     // Load the first image
-    if (imageLoader1->loadImage(argv[1], image1) != FrameworkReturnCode::_SUCCESS)
+    imageLoader1->bindTo<xpcf::IConfigurable>()->getProperty("filePath")->setStringValue(argv[1],0);
+    if (imageLoader1->getImage(image1) != FrameworkReturnCode::_SUCCESS)
     {
        LOG_ERROR("Cannot load image with path {}", argv[1]);
        return -1;
     }
 
     // Load the second image
-    if (imageLoader2->loadImage(argv[2], image2) != FrameworkReturnCode::_SUCCESS)
+    imageLoader1->bindTo<xpcf::IConfigurable>()->getProperty("filePath")->setStringValue(argv[2],0);
+    if (imageLoader2->getImage(image2) != FrameworkReturnCode::_SUCCESS)
     {
-       LOG_ERROR("Cannot load image with path {}", argv[2]);
+       LOG_ERROR("Cannot load image with path {}", argv[1]);
        return -1;
-    }
+    }    
   
     // Detect the keypoints of the first image
     keypointsDetector->detect(image1, keypoints1);
@@ -146,10 +148,12 @@ int run(int argc,char** argv)
     overlay->drawMatchesLines(image1, image2, viewerImage, matchedKeypoints1, matchedKeypoints2);
 
     bool proceed = true;
+    viewer->bindTo<xpcf::IConfigurable>()->getProperty("title")->setStringValue("show matches");
+    viewer->bindTo<xpcf::IConfigurable>()->getProperty("exitKey")->setIntegerValue(27);     
     while (proceed)
     {
         // Display the image with matches in a viewer. If escape key is pressed, exit the loop.
-        if (viewer->display("show matches", viewerImage, &escape_key) == FrameworkReturnCode::_STOP)
+        if (viewer->display(viewerImage) == FrameworkReturnCode::_STOP)
         {
             proceed = false;
             LOG_INFO("End of DescriptorMatcherOpenCVStaticTest");
