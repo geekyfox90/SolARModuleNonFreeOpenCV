@@ -42,6 +42,7 @@ SolARDescriptorsExtractorSURF64Opencv::SolARDescriptorsExtractorSURF64Opencv():C
     addInterface<api::features::IDescriptorsExtractor>(this);
     LOG_DEBUG(" SolARDescriptorsExtractorSURF64Opencv constructor")
     // m_extractor must have a default implementation : initialize default extractor type
+
     m_extractor=SURF::create();
 }
 
