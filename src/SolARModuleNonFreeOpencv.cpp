@@ -23,7 +23,7 @@
 
 namespace xpcf=org::bcom::xpcf;
 
-XPCF_DECLARE_MODULE("2bce6a98-2ad7-4cd5-bd63-b3ee68fb59c0", "SolARModuleNonFreeOpenCV")
+XPCF_DECLARE_MODULE("2bce6a98-2ad7-4cd5-bd63-b3ee68fb59c0", "SolARModuleNonFreeOpenCV", "SolARModuleNonFreeOpenCV provides functionalities based on non free opencv modules (typically sift and surf descriptors)")
 
 extern "C" XPCF_MODULEHOOKS_API xpcf::XPCFErrorCode XPCF_getComponent(const boost::uuids::uuid& componentUUID,SRef<xpcf::IComponentIntrospect>& interfaceRef)
 {
