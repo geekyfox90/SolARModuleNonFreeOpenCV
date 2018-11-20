@@ -13,17 +13,6 @@ setup()
 processPackagedependencies()
 
 # define the list of files to copy to build directory
-if (UNIX)
-	set (LIBPREFIX "lib")
-	set (LIBEXTENSION "so")
-endif(UNIX)
-if (WIN32)
-	set (LIBPREFIX "")
-	set (LIBEXTENSION "dll")
-	string(REPLACE "." "" OPENCVVERSIONSUFFIX ${OPENCV_VERSION})	
-endif(WIN32)
-set (BUILDCONFIG $<$<CONFIG:Debug>:debug>$<$<NOT:$<CONFIG:Debug>>:release>)
-
 set(FILES_TO_COPY
 
 	$ENV{BCOMDEVROOT}/thirdParties/opencv/${OPENCV_VERSION}/lib/x86_64/shared/${BUILDCONFIG}/${LIBPREFIX}opencv_world${OPENCVVERSIONSUFFIX}.${LIBEXTENSION}
