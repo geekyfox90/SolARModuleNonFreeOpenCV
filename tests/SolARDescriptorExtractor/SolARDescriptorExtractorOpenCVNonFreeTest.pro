@@ -1,4 +1,4 @@
-TARGET = SolARDescriptorMatcherOpenCVDynTest
+TARGET = SolARDescriptorExtractorOpenCVNonFreeTest
 VERSION=1.0.0
 
 CONFIG += c++11
@@ -18,9 +18,9 @@ CONFIG(release,debug|release) {
 
 win32:CONFIG -= static
 win32:CONFIG += shared
-
+QMAKE_TARGET.arch = x86_64 #must be defined prior to include
 DEPENDENCIESCONFIG = sharedlib
-#NOTE : CONFIG as staticlib or sharedlib, DEPENDENCIESCONFIG as staticlib or sharedlib MUST BE DEFINED BEFORE templateappconfig.pri inclusion
+#NOTE : CONFIG as staticlib or sharedlib, QMAKE_TARGET.arch and PROJECTDEPLOYDIR MUST BE DEFINED BEFORE templatelibconfig.pri inclusion
 include ($$(BCOMDEVROOT)/builddefs/qmake/templateappconfig.pri)
 
 HEADERS +=
@@ -29,7 +29,6 @@ SOURCES += \
     main.cpp
 
 unix {
-LIBS += -ldl
 }
 
 macx {
@@ -47,3 +46,4 @@ win32 {
     INCLUDEPATH += $$(WINDOWSSDKDIR)lib/winv6.3/um/x64
 
 }
+

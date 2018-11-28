@@ -37,12 +37,12 @@ using namespace datastructure;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
-SolARDescriptorsExtractorSURF64Opencv::SolARDescriptorsExtractorSURF64Opencv()
+SolARDescriptorsExtractorSURF64Opencv::SolARDescriptorsExtractorSURF64Opencv():ComponentBase(xpcf::toUUID<SolARDescriptorsExtractorSURF64Opencv>())
 {
-    setUUID(SolARDescriptorsExtractorSURF64Opencv::UUID);
-    addInterface<api::features::IDescriptorsExtractor>(this,api::features::IDescriptorsExtractor::UUID, "interface api::features::IDescriptorsExtractor");
+    addInterface<api::features::IDescriptorsExtractor>(this);
     LOG_DEBUG(" SolARDescriptorsExtractorSURF64Opencv constructor")
     // m_extractor must have a default implementation : initialize default extractor type
+
     m_extractor=SURF::create();
 }
 
@@ -91,7 +91,7 @@ void SolARDescriptorsExtractorSURF64Opencv::extract(const SRef<Image> image, con
   // m_ex
   // enum DESCRIPTOR::TYPE desc_type = descriptors->getDescriptorType();
 
-    descriptors.reset( new DescriptorBuffer(out_mat_descps.data,DescriptorBuffer::SURF_64, DescriptorBuffer::TYPE_32F, 128, out_mat_descps.rows)) ;
+    descriptors.reset( new DescriptorBuffer(out_mat_descps.data,DescriptorBuffer::SURF_64, DescriptorBuffer::TYPE_32F, 64, out_mat_descps.rows)) ;
 
 }
 
