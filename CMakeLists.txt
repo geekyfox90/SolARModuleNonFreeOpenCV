@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7.2)
 
 ##################################################
-set (VERSION_NUMBER "0.4.0")
+set (VERSION_NUMBER "0.5.0")
 project("SolARModuleNonFreeOpenCV")
 set (SOURCES 
 		src/SolARModuleNonFreeOpencv.cpp
@@ -11,15 +11,16 @@ set (SOURCES
 		src/SolARKeypointDetectorNonFreeOpencv.cpp
 	)
 
-#install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/xpcf_SolARModuleNonFreeOpenCV_registry.xml" DESTINATION $ENV{BCOMDEVROOT}/.xpcf/SolAR/	)
-#set (HEADERS
+set (HEADERS
 	#interfaces/SolAROpencvNonFreeAPI.h
 	#interfaces/SolARDescriptorsExtractorSURF64Opencv.h
 	#interfaces/SolARDescriptorsExtractorSURF128Opencv.h
 	#interfaces/SolARDescriptorsExtractorSIFTOpencv.h
 	#interfaces/SolARModuleManagerNonFreeOpencv.h
 	#interfaces/SolARKeypointDetectorNonFreeOpencv.h
-#)
+)
+
+install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/xpcf_SolARModuleNonFreeOpenCV_registry.xml" DESTINATION $ENV{BCOMDEVROOT}/.xpcf/SolAR/	)
 
 ##################################################
 
