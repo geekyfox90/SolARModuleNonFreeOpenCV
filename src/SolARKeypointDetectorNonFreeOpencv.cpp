@@ -16,7 +16,7 @@
 
 #include "SolARKeypointDetectorNonFreeOpencv.h"
 #include "SolAROpenCVHelper.h"
-#include <core/Log.h>
+#include "core/Log.h"
 
 #include "xpcf/api/IComponentManager.h"
 

@@ -18,6 +18,7 @@
 #include "SolARImageConvertorOpencv.h"
 #include <iostream>
 #include "SolAROpenCVHelper.h"
+#include "core/Log.h"
 #include <utility>
 #include <core/Log.h>
 #include <array>
