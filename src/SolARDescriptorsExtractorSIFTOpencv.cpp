@@ -19,7 +19,7 @@
 #include <iostream>
 #include "SolAROpenCVHelper.h"
 #include <utility>
-
+#include <core/Log.h>
 #include <array>
 
 //#include <boost/thread/thread.hpp>
