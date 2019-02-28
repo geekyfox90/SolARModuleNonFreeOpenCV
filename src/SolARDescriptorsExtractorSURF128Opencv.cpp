@@ -17,6 +17,7 @@
 #include "SolARDescriptorsExtractorSURF128Opencv.h"
 #include "SolARImageConvertorOpencv.h"
 #include "SolAROpenCVHelper.h"
+#include "core/Log.h"
 
 /*
 #include <utility>
