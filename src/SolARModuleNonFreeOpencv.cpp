@@ -12,6 +12,7 @@
  */
 
 #include <iostream>
+#include <core/Log.h>
 
 #include "xpcf/module/ModuleFactory.h"
 
