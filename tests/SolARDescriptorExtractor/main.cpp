@@ -23,6 +23,7 @@
 #include "api/features/IDescriptorsExtractor.h"
 #include "api/display/I2DOverlay.h"
 #include "api/display/IImageViewer.h"
+#include "core/Log.h"
 
 
 #include <boost/log/core.hpp>
