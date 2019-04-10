@@ -50,7 +50,7 @@ public:
 
 private:
 	int m_id;
-    std::string m_type;
+    std::string m_type = "SURF";
     cv::Ptr<cv::Feature2D> m_detector;
     cv::KeyPointsFilter kptsFilter;
 
