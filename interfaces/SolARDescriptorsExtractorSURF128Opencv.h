@@ -32,6 +32,13 @@ using namespace datastructure;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
+/**
+ * @class SolARDescriptorsExtractorSURF128Opencv
+ * @brief <B>Extracts the SURF descriptors (size 128) for a set of keypoints.</B>
+ * <TT>UUID: fe14a310-d0a2-11e7-8fab-cec278b6b50a</TT>
+ *
+ */
+
 class SOLAROPENCVNONFREE_EXPORT_API SolARDescriptorsExtractorSURF128Opencv : public org::bcom::xpcf::ComponentBase,
         public api::features::IDescriptorsExtractor {
 public:
@@ -40,6 +47,10 @@ public:
     void unloadComponent () override final;
     inline std::string getTypeString() override { return std::string("DescriptorExtractorType::SURF128") ;};
 
+    /// @brief Extracts a set of descriptors (size 128) from a given image around a set of keypoints based on SURF algorithm
+    /// [in] image: source image.
+    /// [in] keypoints: set of keypoints.
+    /// [out] decsriptors: set of computed descriptors.
     void extract (const SRef<Image> image, const std::vector<SRef<Keypoint>> &keypoints, SRef<DescriptorBuffer>& descriptors) override;
 
 private:
