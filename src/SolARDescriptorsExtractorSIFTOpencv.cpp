@@ -53,7 +53,7 @@ SolARDescriptorsExtractorSIFTOpencv::~SolARDescriptorsExtractorSIFTOpencv()
     LOG_DEBUG(" SolARDescriptorsExtractorSIFTOpencv destructor");
 }
 
-void SolARDescriptorsExtractorSIFTOpencv::extract(const SRef<Image> image, const std::vector<SRef<Keypoint> > &keypoints, SRef<DescriptorBuffer>& descriptors){
+void SolARDescriptorsExtractorSIFTOpencv::extract(const SRef<Image> image, const std::vector<Keypoint> & keypoints, SRef<DescriptorBuffer>& descriptors){
 
 
     //transform all SolAR data to openCv data
@@ -77,13 +77,13 @@ void SolARDescriptorsExtractorSIFTOpencv::extract(const SRef<Image> image, const
     {
         transform_to_data.push_back(
                     //instantiate keypoint
-                     cv::KeyPoint(keypoints[k]->getX(),
-                                  keypoints[k]->getY(),
-                                  keypoints[k]->getSize(),
-                                  keypoints[k]->getAngle(),
-                                  keypoints[k]->getResponse(),
-                                  keypoints[k]->getOctave(),
-                                  keypoints[k]->getClassId())
+                     cv::KeyPoint(keypoints[k].getX(),
+                                  keypoints[k].getY(),
+                                  keypoints[k].getSize(),
+                                  keypoints[k].getAngle(),
+                                  keypoints[k].getResponse(),
+                                  keypoints[k].getOctave(),
+                                  keypoints[k].getClassId())
                     );
     }
 
