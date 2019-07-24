@@ -59,11 +59,9 @@ static std::map<IKeypointDetector::KeypointDetectorType,std::string> typeToStrin
 SolARKeypointDetectorNonFreeOpencv::SolARKeypointDetectorNonFreeOpencv():ConfigurableBase(xpcf::toUUID<SolARKeypointDetectorNonFreeOpencv>())
 {
     addInterface<api::features::IKeypointDetector>(this);
-
-    SRef<xpcf::IPropertyMap> params = getPropertyRootNode();
-    params->wrapFloat("imageRatio", m_imageRatio);
-    params->wrapInteger("nbDescriptors", m_nbDescriptors);
-    params->wrapString("type", m_type);
+    declareProperty("imageRatio", m_imageRatio);
+    declareProperty("nbDescriptors", m_nbDescriptors);
+    declareProperty("type", m_type);
     LOG_DEBUG("SolARKeypointDetectorOpencv constructor");
 }
 
