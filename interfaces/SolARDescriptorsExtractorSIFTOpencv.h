@@ -44,6 +44,13 @@ using namespace datastructure;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
+/**
+ * @class SolARDescriptorsExtractorSIFTOpencv
+ * @brief <B>Extracts the SIFT descriptors for a set of keypoints.</B>
+ * <TT>UUID: 3787eaa6-d0a0-11e7-8fab-cec278b6b50a</TT>
+ *
+ */
+
 class SOLAROPENCVNONFREE_EXPORT_API SolARDescriptorsExtractorSIFTOpencv : public org::bcom::xpcf::ComponentBase,
         public api::features::IDescriptorsExtractor {
 public:
@@ -52,6 +59,10 @@ public:
     void unloadComponent () override final;
     inline std::string getTypeString() override { return std::string("DescriptorExtractorType::SIFT") ;};
 
+    /// @brief Extracts a set of descriptors from a given image around a set of keypoints based on SIFT algorithm
+    /// [in] image: source image.
+    /// [in] keypoints: set of keypoints.
+    /// [out] decsriptors: set of computed descriptors.
     void extract (const SRef<Image> image, const std::vector<SRef<Keypoint> > &keypoints, SRef<DescriptorBuffer>& descriptors) override;
 
 private:
