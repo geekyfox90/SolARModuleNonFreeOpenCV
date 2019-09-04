@@ -75,15 +75,15 @@ void SolARDescriptorsExtractorSURF128Opencv::extract(const SRef<Image> image, co
     for(unsigned int k =0; k < keypoints.size(); ++k)
     {
         transform_to_data.push_back(
-                    //instantiate keypoint
-                     cv::KeyPoint(keypoints[k].getX(),
-                                  keypoints[k].getY(),
-                                  keypoints[k].getSize(),
-                                  keypoints[k].getAngle(),
-                                  keypoints[k].getResponse(),
-                                  keypoints[k].getOctave(),
-                                  keypoints[k].getClassId())
-                    );
+                //instantiate keypoint
+                 cv::KeyPoint(keypoints[k].getX(),
+                              keypoints[k].getY(),
+                              keypoints[k].getSize(),
+                              keypoints[k].getAngle(),
+                              keypoints[k].getResponse(),
+                              keypoints[k].getOctave(),
+                              keypoints[k].getClassId())
+        );
     }
 
    m_extractor->compute(opencvImage, transform_to_data, out_mat_descps);
