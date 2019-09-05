@@ -91,7 +91,7 @@ void SolARDescriptorsExtractorSURF128Opencv::extract(const SRef<Image> image, co
   // m_ex
   // enum DESCRIPTOR::TYPE desc_type = descriptors->getDescriptorType();
 
-    descriptors.reset( new DescriptorBuffer(out_mat_descps.data,DescriptorBuffer::SURF_128, DescriptorBuffer::TYPE_32F, 128, out_mat_descps.rows)) ;
+    descriptors.reset( new DescriptorBuffer(out_mat_descps.data, DescriptorType::SURF_128, DescriptorDataType::TYPE_32F, 128, out_mat_descps.rows)) ;
 
 }
 
