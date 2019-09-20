@@ -16,12 +16,8 @@
 
 #include "SolARDescriptorsExtractorSIFTOpencv.h"
 #include "SolARImageConvertorOpencv.h"
-#include <iostream>
 #include "SolAROpenCVHelper.h"
 #include "core/Log.h"
-#include <utility>
-#include <core/Log.h>
-#include <array>
 
 //#include <boost/thread/thread.hpp>
 XPCF_DEFINE_FACTORY_CREATE_INSTANCE(SolAR::MODULES::NONFREEOPENCV::SolARDescriptorsExtractorSIFTOpencv);
@@ -38,15 +34,23 @@ using namespace datastructure;
 namespace MODULES {
 namespace NONFREEOPENCV {
 
-SolARDescriptorsExtractorSIFTOpencv::SolARDescriptorsExtractorSIFTOpencv():ComponentBase(xpcf::toUUID<SolARDescriptorsExtractorSIFTOpencv>())
+SolARDescriptorsExtractorSIFTOpencv::SolARDescriptorsExtractorSIFTOpencv():ConfigurableBase(xpcf::toUUID<SolARDescriptorsExtractorSIFTOpencv>())
 {
-    addInterface<api::features::IDescriptorsExtractor>(this);
+    declareInterface<api::features::IDescriptorsExtractor>(this);
     LOG_DEBUG(" SolARDescriptorsExtractorSIFTOpencv constructor");
-
-    // m_extractor must have a default implementation : initialize default extractor type
-    m_extractor=SIFT::create();
+    declareProperty("nbFeatures", m_nbFeatures);
+    declareProperty("nbOctaveLayers", m_nbOctaveLayers);
+    declareProperty("contrastThreshold", m_contrastThreshold);
+    declareProperty("edgeThreshold", m_edgeThreshold);
+    declareProperty("sigma", m_sigma);
 }
 
+xpcf::XPCFErrorCode SolARDescriptorsExtractorSIFTOpencv::onConfigured()
+{
+    // m_extractor must have a default implementation : initialize default extractor type
+    m_extractor=SIFT::create(m_nbFeatures, m_nbOctaveLayers, m_contrastThreshold, m_edgeThreshold, m_sigma);
+    return xpcf::_SUCCESS;
+}
 
 SolARDescriptorsExtractorSIFTOpencv::~SolARDescriptorsExtractorSIFTOpencv()
 {
@@ -58,7 +62,6 @@ void SolARDescriptorsExtractorSIFTOpencv::extract(const SRef<Image> image, const
 
     //transform all SolAR data to openCv data
     SRef<Image> convertedImage = image;
-
     if (image->getImageLayout() != Image::ImageLayout::LAYOUT_GREY) {
         // input Image not in grey levels : convert it !
         SolARImageConvertorOpencv convertor;
@@ -89,7 +92,7 @@ void SolARDescriptorsExtractorSIFTOpencv::extract(const SRef<Image> image, const
 
    m_extractor->compute(opencvImage, transform_to_data, out_mat_descps);
 
-    descriptors.reset( new DescriptorBuffer(out_mat_descps.data,DescriptorBuffer::SIFT, DescriptorBuffer::TYPE_32F, 128, out_mat_descps.rows)) ;
+    descriptors.reset( new DescriptorBuffer(out_mat_descps.data,DescriptorType::SIFT, DescriptorDataType::TYPE_32F, 128, out_mat_descps.rows)) ;
 
 }
 
