@@ -1,4 +1,4 @@
-TARGET = SolARDescriptorExtractorOpenCVNonFreeTest
+TARGET = SolAROpenCVNonFreeDescriptorExtractor
 VERSION=0.6.0
 
 CONFIG += c++11
@@ -8,24 +8,26 @@ CONFIG += console
 DEFINES += MYVERSION=$${VERSION}
 
 CONFIG(debug,debug|release) {
+    DEPENDENCIESCONFIG = shared recurse
     DEFINES += _DEBUG=1
     DEFINES += DEBUG=1
 }
 
 CONFIG(release,debug|release) {
+    DEPENDENCIESCONFIG = shared install_recurse # install only in release mode
+    TARGETDEPLOYDIR = $${PWD}\..\bin
+    DEFINES += _NDEBUG=1
     DEFINES += NDEBUG=1
 }
 
 win32:CONFIG -= static
 win32:CONFIG += shared
 
-DEPENDENCIESCONFIG = shared recursive install
-
 ## Configuration for Visual Studio to install binaries and dependencies. Work also for QT Creator by replacing QMAKE_INSTALL
 PROJECTCONFIG = QTVS
 
 #NOTE : CONFIG as staticlib or sharedlib, DEPENDENCIESCONFIG as staticlib or sharedlib, QMAKE_TARGET.arch and PROJECTDEPLOYDIR MUST BE DEFINED BEFORE templatelibconfig.pri inclusion
-include (../../../builddefs/qmake/templateappconfig.pri)
+include ($$shell_quote($$shell_path($$(REMAKEN_RULES_ROOT)/qmake/templateappconfig.pri))) # Shell_quote & shell_path required for visual on windows
 
 SOURCES += \
     main.cpp
@@ -49,8 +51,9 @@ win32 {
     INCLUDEPATH += $$(WINDOWSSDKDIR)lib/winv6.3/um/x64
 }
 
-#NOTE : Must be placed at the end of the .pro
-include (../../../builddefs/qmake/remaken_install_lib.pri)
+configfile.path = $${TARGETDEPLOYDIR}/
+configfile.files = $${PWD}/SolAROpenCVNonFreeDescriptorExtractor_conf.xml
+INSTALLS += configfile
 
-DISTFILES += \
-    conf_DescriptorExtractor.xml
+#NOTE : Must be placed at the end of the .pro
+include ($$shell_quote($$shell_path($$(REMAKEN_RULES_ROOT)/qmake/remaken_install_target.pri))) # Shell_quote & shell_path required for visual on windows
